@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  lavajato-backend-web:
+    image: thiagogonncalves/lavajato-backend:latest
+    build: .
+    container_name: lavajato-backend-web
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./media:/app/media
+      - ./core/static:/app/core/static
+      - ./static:/static
+    ports:
+      - 8001:8000
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: on-failure
+
+  db:
+    image: postgres:14-alpine
+    container_name: lavajato-backend-db
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
+    restart: on-failure
+
+networks:
+  default:
+    external:
+      name: $DEFAULT_NETWORK
