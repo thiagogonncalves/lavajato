@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Build Image') {
             steps {
-                sript{
+                script{
                     dockerapp = docker.build("thiagogonncalves/lavajato-backend", '-f Dockerfile . ')
                 }
             }
