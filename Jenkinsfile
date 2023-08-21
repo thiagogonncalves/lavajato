@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerapp = docker.build("thiagogoncalves/lavajato-backend")
+                    dockerapp = docker.build("thiagogonncalves/lavajato-backend")
                 }
             }
         }
