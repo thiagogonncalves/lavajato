@@ -2,9 +2,11 @@ pipeline{
     agent any
 
     stages{
-        stage('Inicial') {
+        stage('Build Image') {
             steps {
-                echo 'Iniciando a pipeline'
+                sript{
+                    dockerapp = docker.build("thiagogonncalves/lavajato-backend:latest" , '-f ./Dockerfile ./')
+                }
             }
         }
     }
