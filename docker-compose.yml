@@ -1,7 +1,7 @@
-version: '3.7'
+version: '3'
 
 services:
-  lavajato-backend-web:
+  web:
     image: thiagogonncalves/lavajato-backend:latest
     build: .
     container_name: lavajato-backend-web
